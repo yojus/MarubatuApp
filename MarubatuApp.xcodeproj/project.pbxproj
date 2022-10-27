@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8D070F92290579C900DA3C6F /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D070F91290579C900DA3C6F /* QuestionViewController.swift */; };
+		8D3E9249290A13CE00BA0A4A /* wrong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8D3E9247290A13CE00BA0A4A /* wrong.mp3 */; };
+		8D3E924A290A13CE00BA0A4A /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8D3E9248290A13CE00BA0A4A /* correct.mp3 */; };
 		8DB61AD9290367AB002A6768 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB61AD8290367AB002A6768 /* AppDelegate.swift */; };
 		8DB61ADB290367AB002A6768 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB61ADA290367AB002A6768 /* SceneDelegate.swift */; };
 		8DB61ADD290367AB002A6768 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB61ADC290367AB002A6768 /* ViewController.swift */; };
@@ -18,6 +20,8 @@
 
 /* Begin PBXFileReference section */
 		8D070F91290579C900DA3C6F /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		8D3E9247290A13CE00BA0A4A /* wrong.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wrong.mp3; sourceTree = "<group>"; };
+		8D3E9248290A13CE00BA0A4A /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correct.mp3; sourceTree = "<group>"; };
 		8DB61AD5290367AB002A6768 /* MarubatuApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarubatuApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DB61AD8290367AB002A6768 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DB61ADA290367AB002A6768 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +43,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D3E9246290A13CE00BA0A4A /* QuizSound */ = {
+			isa = PBXGroup;
+			children = (
+				8D3E9247290A13CE00BA0A4A /* wrong.mp3 */,
+				8D3E9248290A13CE00BA0A4A /* correct.mp3 */,
+			);
+			path = QuizSound;
+			sourceTree = "<group>";
+		};
 		8DB61ACC290367AB002A6768 = {
 			isa = PBXGroup;
 			children = (
@@ -58,6 +71,7 @@
 		8DB61AD7290367AB002A6768 /* MarubatuApp */ = {
 			isa = PBXGroup;
 			children = (
+				8D3E9246290A13CE00BA0A4A /* QuizSound */,
 				8DB61AD8290367AB002A6768 /* AppDelegate.swift */,
 				8DB61ADA290367AB002A6768 /* SceneDelegate.swift */,
 				8DB61ADC290367AB002A6768 /* ViewController.swift */,
@@ -131,6 +145,8 @@
 				8DB61AE5290367B1002A6768 /* LaunchScreen.storyboard in Resources */,
 				8DB61AE2290367B1002A6768 /* Assets.xcassets in Resources */,
 				8DB61AE0290367AB002A6768 /* Main.storyboard in Resources */,
+				8D3E9249290A13CE00BA0A4A /* wrong.mp3 in Resources */,
+				8D3E924A290A13CE00BA0A4A /* correct.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

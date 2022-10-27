@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
     
+    var resultAudioPlayer: AVAudioPlayer = AVAudioPlayer()
+    var AudioPlayer: AVAudioPlayer = AVAudioPlayer()
     
     @IBOutlet weak var label: UILabel!
     
@@ -38,9 +41,11 @@ class ViewController: UIViewController {
                 // currentQuestionNumを1足して次の問題に進む
                 currentQuestionNum += 1
                 showAlert(message: "正解")
+                resultAudioPlayer.play()
             } else {
                 // 不正解
                 showAlert(message: "不正解")
+                AudioPlayer.play()
             }
         } else {
             print("答えが入ってません")
@@ -67,6 +72,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupSound()
+        Sound()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -98,5 +105,19 @@ class ViewController: UIViewController {
     
     @IBAction func create(_ sender: Any) {
         performSegue(withIdentifier: "qvc", sender: nil)
+    }
+    
+    func setupSound() {
+        if let sound = Bundle.main.path(forResource: "correct", ofType: ".mp3") {
+            resultAudioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
+            resultAudioPlayer.prepareToPlay()
+        }
+    }
+    
+    func Sound() {
+        if let sound = Bundle.main.path(forResource: "wrong", ofType: ".mp3") {
+            AudioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
+            AudioPlayer.prepareToPlay()
+        }
     }
 }
