@@ -6,33 +6,23 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
     
+    var resultAudioPlayer: AVAudioPlayer = AVAudioPlayer()
+    var AudioPlayer: AVAudioPlayer = AVAudioPlayer()
     
     @IBOutlet weak var label: UILabel!
+    
     // 表示中の問題番号を格納
     var currentQuestionNum: Int = 0
     
     // 問題
-    let questions: [[String: Any]] = [
-        [
-            "question": "iPhoneアプリを開発する統合環境はZcodeである",
-            "answer": false
-        ],
-        [
-            "question": "Xcode画面の右側にはユーティリティーズがある",
-            "answer": true
-        ],
-        [
-            "question": "UILabelは文字列を表示する際に利用する",
-            "answer": true
-        ]
-    ]
+    var questions: [[String: Any]] = []
     
     func showQuestion() {
         let question = questions[currentQuestionNum]
-        
         if let que = question["question"] as? String {
             label.text = que
         }
@@ -51,9 +41,11 @@ class ViewController: UIViewController {
                 // currentQuestionNumを1足して次の問題に進む
                 currentQuestionNum += 1
                 showAlert(message: "正解")
+                resultAudioPlayer.play()
             } else {
                 // 不正解
                 showAlert(message: "不正解")
+                AudioPlayer.play()
             }
         } else {
             print("答えが入ってません")
@@ -80,20 +72,52 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        showQuestion()
+        setupSound()
+        Sound()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if UserDefaults.standard.array(forKey: "Q")?.first != nil {
+            questions = UserDefaults.standard.array(forKey: "Q") as! [[String:Any]]
+            showQuestion()
+        } else {
+            label.text = "問題を入力してください"
+        }
+    }
     
     @IBAction func Nobutton(_ sender: UIButton) {
-        checkAnswer(yourAnswer: false)
+        if UserDefaults.standard.array(forKey: "Q")?.first != nil{
+            checkAnswer(yourAnswer: false)
+        } else {
+            showAlert(message: "問題を入力してください")
+        }
     }
     
     @IBAction func Okbutton(_ sender: UIButton) {
-        checkAnswer(yourAnswer: true)
+        if UserDefaults.standard.array(forKey: "Q")?.first != nil {
+            checkAnswer(yourAnswer: true)
+        } else {
+            showAlert(message: "問題を入力してください")
+        }
     }
     
+    @IBAction func create(_ sender: Any) {
+        performSegue(withIdentifier: "qvc", sender: nil)
+    }
     
+    func setupSound() {
+        if let sound = Bundle.main.path(forResource: "correct", ofType: ".mp3") {
+            resultAudioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
+            resultAudioPlayer.prepareToPlay()
+        }
+    }
     
-    
+    func Sound() {
+        if let sound = Bundle.main.path(forResource: "wrong", ofType: ".mp3") {
+            AudioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
+            AudioPlayer.prepareToPlay()
+        }
+    }
 }
-
